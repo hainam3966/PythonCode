@@ -1,0 +1,21 @@
+import os
+os.system('cls')
+def xau(a):
+    b = []
+    i=d=0
+    a=a+" "
+    while i<(len(a)-1):
+        while (a[i]==a[i+1])and(a[i]!=" "):
+            d+=1
+            i+=1
+        if (d!=0): 
+            b.append(str(d+1)+a[i])
+            d=0
+        else:
+            if(a[i]!=" "):b.append(a[i])
+        i+=1
+    print(">>",a)
+    print(">",b)
+with open("d:\input.txt") as file:
+    for line in file:
+        if line!="\n": xau(line.rstrip())
