@@ -1,0 +1,175 @@
+--
+-- GIGAMON-COMMON-SMI.my
+-- Thursday, January 01, 2015 at 09:58:11
+--
+
+	GIGAMON-COMMON-SMI DEFINITIONS ::= BEGIN
+
+		IMPORTS
+			enterprises, MODULE-IDENTITY, OBJECT-IDENTITY
+				FROM SNMPv2-SMI;
+
+
+		-- 1.3.6.1.4.1.26866
+		gigamonSnmp MODULE-IDENTITY
+
+			LAST-UPDATED "201912030000Z"		-- Dec 03, 2019
+			ORGANIZATION
+				"Gigamon, Inc."
+			CONTACT-INFO
+				"Gigamon, Inc.
+				3300 Olcott Street
+				Santa Clara, CA 95054
+				"
+            DESCRIPTION
+                "Added FIPSTESTEXEC"
+            REVISION "201912030000Z"		-- Dec 03, 2019 at 00:00 GMT
+			DESCRIPTION
+				"Added THROTTLEDTRAP Type"
+			REVISION "201808090000Z"		-- August 08, 2018 at 00:00 GMT
+
+			DESCRIPTION
+				"Added ThresholdAction"
+			REVISION "201412281208Z"		-- December 28, 2014 at 12:08 GMT
+			DESCRIPTION
+				"This is the MIB Module for Gigamon's enterprise specific parameters"
+			REVISION "201412280000Z"		-- December 28, 2014 at 00:00 GMT
+			DESCRIPTION
+				"Initial revision of this MIB module."
+			::= { enterprises 26866 }
+
+
+--
+-- Type definitions
+--
+
+		EnableValue ::= INTEGER
+			{
+			disable(0),
+			enable(1)
+			}
+
+		ONVALUETYPE ::= INTEGER
+			{
+			off(0),
+			on(1)
+			}
+
+		ACTIONONLY ::= INTEGER
+			{
+			apply(1),
+			nonapply(2)
+			}
+
+		YESVALUETYPE ::= INTEGER
+			{
+			no(0),
+			yes(1)
+			}
+
+		OKVALUETYPE ::= INTEGER
+			{
+			fault(0),
+			ok(1)
+			}
+
+		VALIDTYPE ::= INTEGER
+			{
+			invalid(0),
+			valid(1)
+			}
+
+		TUNGWSTATUS ::= INTEGER
+			{
+			tunGwNA(0),
+			tunGwDown(1),
+			tunGwUp(2),
+			networkTunnelPort(3)			
+			}
+
+		TUNDESTSTATUS ::= INTEGER
+			{
+			tunDestNA(0),
+			tunDestDown(1),
+			tunDestUp(2)
+			}
+
+        THROTTLEDTRAP ::= INTEGER
+            {
+            secondflashboot(0),
+            bufferoverusage(1),
+            caviumcputemp(2),
+            configsave(3),
+            cputemp(4),
+            evallicensereminder(5),
+            exhausttemp(6),
+            fanchange(7),
+            firmwarechange(8),
+            gscpuutilization(9),
+            ibstatechange(10),
+            inlinetoolrecovery(11),
+            linkspeedstatuschange(12),
+            lowportutilization(13),
+            modulechange(14),
+            operationmode(15),
+            opticstemp(16),
+            packetdrop(17),
+            portutilization(18),
+            powerchange(19),
+            rxtxerror(20),
+            switchcputemp(21),
+            systemreset(22),
+            unexpectedshutdown(23),
+            userauthfail(24),
+            watchdogreset(25),
+            policytrigger(26),
+            eporttemp(27),
+            gdpupdate(28),
+            sublicensereminder(29),
+            processcputhreshold(30),
+            processmemthreshold(31),
+            syscputhreshold(32),
+            sysmemthreshold(33),
+            gspacketdrop(34),
+            tunnelstatus(35),
+            tunneldeststatus(36),
+            fipstest(37),
+            ipgatewaystatus(38),
+            clusterrolechange(39),
+            clusternodejoin(40),
+            clusternodeleave(41),
+            clusternodejoinfailure(42)
+            }
+
+
+        FIPSTESTEXEC ::= INTEGER
+            {
+            bootup(0),
+            gs(1),
+            conditional(2)
+            }
+
+--
+--
+-- Textual Conventions
+--
+--
+
+ThresholdAction ::= TEXTUAL-CONVENTION
+        STATUS  current
+        DESCRIPTION
+        "Bit-wise representation of mitigation actions
+         taken by system on hitting resource threshold limits."
+
+        SYNTAX  BITS {
+                       processRestart(1),
+                       connectionClose(2)
+                     }
+
+
+
+	END
+
+--
+-- GIGAMON-COMMON-SMI.my
+--
